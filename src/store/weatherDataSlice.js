@@ -14,6 +14,6 @@ const weatherDataSlice = createSlice({
   },
 });
 
-export const { getData, setData } = weatherDataSlice.actions;
+export const { setData } = weatherDataSlice.actions;
 
 export default weatherDataSlice.reducer;
