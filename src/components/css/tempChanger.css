@@ -1,0 +1,78 @@
+label#temp_label {
+  position: relative;
+  display: block;
+  width: 80px;
+  height: 40px;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #008cff;
+  cursor: pointer;
+  transition: 200ms;
+}
+
+label#temp_label::after {
+  content: "";
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background: linear-gradient(180deg, #008cff, #94d6ff);
+  border-radius: 6px;
+  transition: 200ms;
+}
+
+input#temp-toggle {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+input#temp-toggle + label#temp_label {
+  box-shadow: inset 1px 1px 5px -1px #008cff;
+}
+input#temp-toggle:checked + label#temp_label {
+  box-shadow: inset 1px 1px 5px -1px #ff9e01;
+}
+
+input#temp-toggle:checked + label#temp_label::after {
+  left: 75px;
+  transform: translateX(-100%);
+  background: linear-gradient(180deg, #ff9e01, #fdbb57);
+}
+
+label#temp_label:active::after {
+  width: 45px;
+}
+
+label#temp_label .temp {
+  position: absolute;
+  width: 22px;
+  top: 9px;
+  font-weight: 600;
+  z-index: 10;
+}
+label#temp_label .temp.celsius {
+  left: 10px;
+  transition: 200ms;
+}
+label#temp_label .temp.fahrenheit {
+  left: 51px;
+  transition: 200ms;
+}
+
+/* Default: Celsius selected */
+input#temp-toggle + label#temp_label .temp.celsius {
+  color: white;
+}
+input#temp-toggle + label#temp_label .temp.fahrenheit {
+  color: #ff9e01;
+}
+
+/* Toggled: Fahrenheit selected */
+input#temp-toggle:checked + label#temp_label .temp.celsius {
+  color: #008cff;
+}
+input#temp-toggle:checked + label#temp_label .temp.fahrenheit {
+  color: white;
+}
