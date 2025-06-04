@@ -7,7 +7,8 @@ import {
   TimeIcon,
   WindIcon,
 } from "./assets";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setData } from "../store/weatherDataSlice";
 
 function WeatherDetails({
   data,
@@ -24,6 +25,7 @@ function WeatherDetails({
   const [clearMessage, setClearMessage] = useState("");
 
   const storedWeatherData = useSelector((state) => state.weatherData.data);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setWeatherDetails([
@@ -55,7 +57,7 @@ function WeatherDetails({
     const cached = storedWeatherData;
 
     if (cached.length > 0) {
-      sessionStorage.clear();
+      dispatch(setData([]));
       setRecentSearches([]);
       setClearMessage("Recent searches have been cleared");
     } else {

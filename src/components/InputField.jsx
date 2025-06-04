@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { SearchIcon, SearchDarkIcon } from "./assets";
 
 function InputField({ input, setInput, handleCitySearch, setInputError }) {
-  const theme = useSelector((state) => state.mode);
+  const theme = useSelector((state) => state.theme.mode);
 
   const handleSubmit = (e) => {
     e.preventDefault();
