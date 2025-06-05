@@ -5,7 +5,7 @@ import Navbar from "./Navbar";
 import InputField from "./InputField";
 import ThemeModeButton from "./ThemeModeButton";
 import TempChangerButton from "./TempChangerButton";
-import LoadingPage from "./LoadingPage";
+import PreFetchUI from "./PreFetchUI";
 
 export {
   WeatherPage,
@@ -15,5 +15,5 @@ export {
   InputField,
   ThemeModeButton,
   TempChangerButton,
-  LoadingPage,
+  PreFetchUI,
 };

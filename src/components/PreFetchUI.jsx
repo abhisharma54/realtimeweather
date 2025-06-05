@@ -19,7 +19,7 @@ import {
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-function LoadingPage() {
+function PreFetchUI() {
   const theme = useSelector((state) => state.theme.mode);
   const [currentIndex, setCurrentIndex] = useState(0);
   const icons = [
@@ -61,7 +61,7 @@ function LoadingPage() {
     if (currentIndex < icons.length - 1) {
       const interval = setInterval(() => {
         setCurrentIndex((prevIndex) => prevIndex + 1);
-      }, 200);
+      }, 300);
 
       return () => clearInterval(interval);
     }
@@ -71,22 +71,22 @@ function LoadingPage() {
 
   return (
     <div className="w-full pb-5 flex justify-center">
-      <div className="flex flex-col justify-center items-center gap-10">
+      <div className="flex flex-col justify-center items-center gap-10 max-sm:gap-6">
         <img
           className="w-[250px]"
           src={theme === "light" ? currentIcon.lightIcon : currentIcon.darkIcon}
           alt=""
           loading="lazy"
         />
-        <div className="logo text-5xl text-shadow-lg">
+        <div className="logo text-5xl text-shadow-lg max-sm:text-4xl">
           RealTime
           <span className="text-[var(--logoColor)] dark:text-[#909090]">
             Weather
           </span>
         </div>
         <button>
-          <span className="block w-[200px] py-2 text-2xl font-semibold tracking-wide bg-[image:var(--bg-loading-btn)] dark:bg-[image:var(--bg-dark-loading-btn)] text-[#fff] rounded-full">
-            Loading
+          <span className="block px-6 py-2 text-2xl font-semibold tracking-wide bg-[image:var(--bg-loading-btn)] dark:bg-[image:var(--bg-dark-loading-btn)] text-white rounded-full max-sm:text-xl max-sm:font-medium">
+            Search City Name
           </span>
         </button>
       </div>
@@ -94,4 +94,4 @@ function LoadingPage() {
   );
 }
 
-export default LoadingPage;
+export default PreFetchUI;

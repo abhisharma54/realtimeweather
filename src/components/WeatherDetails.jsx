@@ -102,20 +102,26 @@ function WeatherDetails({
         </div>
         {showRecentSearch && (
           <div className="recent-cities-list flex flex-col gap-1 pb-5 overflow-auto">
-            {recentSearches.map((search) => (
-              <div
-                key={search.city}
-                className="flex flex-col gap-2 transition duration-100 ease-in hover:text-[#c3e6ff] dark:hover:text-[#bebebe] cursor-pointer"
-              >
-                <button
-                  className="flex cursor-pointer"
-                  onClick={() => handleCitySearch(search.city)}
+            {recentSearches.length > 0 ? (
+              recentSearches.map((search) => (
+                <div
+                  key={search.city}
+                  className="flex flex-col gap-2 transition duration-100 ease-in hover:text-[#c3e6ff] dark:hover:text-[#bebebe] cursor-pointer"
                 >
-                  <span>{search.city}</span>
-                </button>
-                <span className="block w-full h-[2px] bg-[#94d6ff] dark:bg-[#b2b2b2]"></span>
-              </div>
-            ))}
+                  <button
+                    className="flex cursor-pointer"
+                    onClick={() => handleCitySearch(search.city)}
+                  >
+                    <span>{search.city}</span>
+                  </button>
+                  <span className="block w-full h-[2px] bg-[#94d6ff] dark:bg-[#b2b2b2]"></span>
+                </div>
+              ))
+            ) : (
+              <span className="text-sm text-[#94d6ff] dark:text-[#909090] text-center py-2">
+                No cities in recent searches
+              </span>
+            )}
           </div>
         )}
       </div>

@@ -38,13 +38,10 @@ function WeatherCard({ data, tempFahrenheit, setTempFahrenheit }) {
     const iconKey = Object.keys(weatherIcons).find((weather) =>
       condition?.includes(weather)
     );
-    return weatherIcons?.[iconKey]
-      ? theme === "light"
-        ? weatherIcons[iconKey][0]
-        : weatherIcons[iconKey][1]
-      : theme === "light"
-      ? OvercastIcon
-      : OvercastDarkIcon;
+    const [lightIcon, darkIcon] = weatherIcons[iconKey];
+    return theme === "light"
+      ? lightIcon || OvercastIcon
+      : darkIcon || OvercastDarkIcon;
   }, [data.condition, theme]);
 
   return (

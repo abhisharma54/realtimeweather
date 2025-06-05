@@ -1,20 +1,13 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import { SearchIcon, SearchDarkIcon } from "./assets";
+import React from "react";
 
-function InputField({ input, setInput, handleCitySearch, setInputError }) {
+function InputField({ input, setInput, handleCitySearch }) {
   const theme = useSelector((state) => state.theme.mode);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (input.trim() !== "") {
-      handleCitySearch(input);
-    } else {
-      setInputError(true);
-      setTimeout(() => {
-        setInputError(false);
-      }, 3000);
-    }
+    handleCitySearch(input);
   };
 
   return (
@@ -38,4 +31,4 @@ function InputField({ input, setInput, handleCitySearch, setInputError }) {
   );
 }
 
-export default InputField;
+export default React.memo(InputField);
