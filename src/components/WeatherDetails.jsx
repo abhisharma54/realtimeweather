@@ -31,22 +31,22 @@ function WeatherDetails({
     setWeatherDetails([
       {
         label: "Humidity",
-        value: data?.humidity + "%",
+        value: data?.humidity ? `${data?.humidity} %` : "",
         icon: HumidityIcon,
       },
       {
         label: "Date",
-        value: data?.date,
+        value: data?.date || "",
         icon: DateIcon,
       },
       {
         label: "Time",
-        value: data?.time,
+        value: data?.time || "",
         icon: TimeIcon,
       },
       {
         label: "Wind Speed",
-        value: data?.windSpeed + " kmph",
+        value: data.windSpeed ? `${data.windSpeed} kmph` : "",
         icon: WindIcon,
       },
     ]);
