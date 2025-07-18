@@ -37,25 +37,21 @@ function WeatherPage() {
         condition,
       } = data.current;
 
-      const currentDay = new Intl.DateTimeFormat("en-US", {
-        timeZone: tz_id,
-        weekday: "long",
-      })
-        .format(new Date())
-        .toUpperCase();
+      const format = (opt) =>
+        new Intl.DateTimeFormat("en-GB", {
+          timeZone: tz_id,
+          ...opt,
+        }).format();
 
-      const currentDate = new Intl.DateTimeFormat("en-US", {
-        timeZone: tz_id,
+      const currentDay = format({ weekday: "long" }).toUpperCase();
+
+      const currentDate = format({
         day: "2-digit",
         month: "2-digit",
-        year: "2-digit",
-      }).format(new Date());
+        year: "numeric",
+      }).replace(/\//g, "-");
 
-      const currentTime = new Intl.DateTimeFormat("en-US", {
-        timeZone: tz_id,
-        hour: "2-digit",
-        minute: "2-digit",
-      }).format(new Date());
+      const currentTime = format({ hour: "2-digit", minute: "2-digit" });
 
       const weatherDetails = {
         city: name,
@@ -72,7 +68,7 @@ function WeatherPage() {
         time: currentTime,
       };
 
-      const removeExistingData = storedWeatherData.filter(
+      const removeExistingData = storedWeatherData?.filter(
         (item) => item.city !== weatherDetails.city
       );
       const updatedData = [...removeExistingData, weatherDetails];
