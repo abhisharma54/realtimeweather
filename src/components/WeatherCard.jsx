@@ -36,7 +36,7 @@ function WeatherCard({ data, tempFahrenheit, setTempFahrenheit }) {
   const weatherIcon = useMemo(() => {
     const condition = data.condition?.toLowerCase();
     const iconKey = Object.keys(weatherIcons).find((weather) =>
-      condition?.includes(weather)
+      condition?.includes(weather),
     );
     const [lightIcon, darkIcon] = weatherIcons[iconKey];
     return theme === "light"
@@ -45,20 +45,20 @@ function WeatherCard({ data, tempFahrenheit, setTempFahrenheit }) {
   }, [data.condition, theme]);
 
   return (
-    <div className="card w-full max-w-[500px] flex flex-col gap-4">
+    <div className="glassCard p-5 w-full max-w-[500px] flex flex-col gap-4">
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-1">
           <img
-            className="w-[35px]"
+            className="w-[30px] sm:w-[35px]"
             src={LocationIcon}
             alt="location-icon"
             loading="lazy"
           />
           <div>
-            <h1 className="text-[1.4rem] font-medium leading-6 tracking-wider">
+            <h1 className="text-[1.2rem] sm:text-[1.4rem] font-medium leading-6 tracking-wider">
               {data.city || "City"}
             </h1>
-            <p className="mt-0 tracking-wider text-md max-sm:text-sm">
+            <p className="mt-0 tracking-wider text-sm sm:text-base">
               {data.country || "Country"}
             </p>
           </div>
@@ -69,7 +69,7 @@ function WeatherCard({ data, tempFahrenheit, setTempFahrenheit }) {
         />
       </div>
       <div className="flex flex-col justify-center items-center">
-        <span className="text-7xl font-semibold">
+        <span className="text-6xl sm:text-7xl font-semibold">
           {data.temperature || 0}
           {tempFahrenheit ? "°F" : "°C"}
         </span>

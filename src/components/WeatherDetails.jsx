@@ -84,29 +84,32 @@ function WeatherDetails({
           {error}
         </p>
       ) : null}
-      <div className="recent-search w-full min-h-[50px] max-h-[200px] flex flex-col gap-2 justify-center p-2 bg-[var(--bg-input)] dark:bg-[var(--bg-dark-input)] rounded-md overflow-hidden">
-        <div className="flex items-center justify-between">
+      <div
+        className={`recent-search w-full min-h-[50px] max-h-[200px] flex flex-col gap-2 justify-center p-2 bg-[var(--bg-input)] dark:bg-[var(--bg-dark-input)] rounded-md transition duration-100 ease-in ${!showRecentSearch && "hover:bg-[#21a2ff] dark:hover:bg-[#505050] cursor-pointer"} overflow-hidden cursor-pointer`}
+      >
+        <button
+          className="flex items-center justify-between  cursor-pointer"
+          onClick={() => setShowRecentSearch((prev) => !prev)}
+        >
           <span className="text-[#c3e6ff] dark:text-[#b2b2b2]">
             Recent Search
           </span>
-          <button onClick={() => setShowRecentSearch((prev) => !prev)}>
-            <img
-              className={`w-[30px] ${
-                showRecentSearch ? "rotate-x-180" : "rotate-x-0"
-              } transition duration-150 ease-in hover:scale-110 cursor-pointer`}
-              src={ArrowIcon}
-              alt="arrow-icon"
-              loading="lazy"
-            />
-          </button>
-        </div>
+          <img
+            className={`w-[30px] ${
+              showRecentSearch ? "rotate-x-180" : "rotate-x-0"
+            } transition duration-150 ease-in hover:scale-110 cursor-pointer`}
+            src={ArrowIcon}
+            alt="arrow-icon"
+            loading="lazy"
+          />
+        </button>
         {showRecentSearch && (
           <div className="recent-cities-list flex flex-col gap-1 pb-5 overflow-auto">
             {recentSearches.length > 0 ? (
               recentSearches.map((search) => (
                 <div
                   key={search.city}
-                  className="flex flex-col gap-2 transition duration-100 ease-in hover:text-[#c3e6ff] dark:hover:text-[#bebebe] cursor-pointer"
+                  className="flex flex-col gap-2 transition duration-100 ease-in hover:text-[#005eff] hover:font-semibold dark:hover:text-[#bebebe] cursor-pointer"
                 >
                   <button
                     className="flex cursor-pointer"

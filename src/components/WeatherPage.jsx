@@ -19,7 +19,7 @@ function WeatherPage() {
     setError("");
     try {
       const res = await fetch(
-        `https://api.weatherapi.com/v1/current.json?key=${api_key}&q=${city}&aqi=no`
+        `https://api.weatherapi.com/v1/current.json?key=${api_key}&q=${city}&aqi=no`,
       );
       const data = await res.json();
       if (data.error) {
@@ -39,6 +39,7 @@ function WeatherPage() {
 
       const format = (opt) =>
         new Intl.DateTimeFormat("en-GB", {
+          // en->English Language, GB-> Great Britain (UK region)
           timeZone: tz_id,
           ...opt,
         }).format();
@@ -51,7 +52,11 @@ function WeatherPage() {
         year: "numeric",
       }).replace(/\//g, "-");
 
-      const currentTime = format({ hour: "2-digit", minute: "2-digit" });
+      const currentTime = format({
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      });
 
       const weatherDetails = {
         city: name,
@@ -69,7 +74,7 @@ function WeatherPage() {
       };
 
       const removeExistingData = storedWeatherData?.filter(
-        (item) => item.city !== weatherDetails.city
+        (item) => item.city !== weatherDetails.city,
       );
       const updatedData = [...removeExistingData, weatherDetails];
 

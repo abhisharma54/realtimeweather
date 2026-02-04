@@ -69,3 +69,26 @@ body {
 [data-theme="dark"] ::-webkit-scrollbar-thumb {
   background: #909090;
 }
+
+.glassCard {
+  overflow: hidden;
+  border-radius: inherit;
+  transition: all 100ms ease-out;
+  border-radius: 28px;
+  backdrop-filter: brightness(1.1) blur(2px);
+}
+
+.glassCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: 28px;
+  -webkit-box-shadow:
+    inset 2px 2px 0px -2px rgba(255, 255, 255, 0.7),
+    inset 0 0 3px 1px rgba(255, 255, 255, 0.7);
+  box-shadow:
+    inset 6px 6px 0px -6px rgba(255, 255, 255, 0.7),
+    inset 0 0 8px 1px rgba(255, 255, 255, 0.7);
+}
